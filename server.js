@@ -42,6 +42,14 @@ MongoClient.connect(dbConnectionStr)
             })    
             .catch(error => console.error(error) )   
         })
+
+        app.get('/api/', (request, response) => {
+            infoCollection.find().toArray()
+            .then(result => {
+                console.log(result)
+                response.json(result.length)
+            })
+        })
     })
     .catch(error => console.log(error))
 
